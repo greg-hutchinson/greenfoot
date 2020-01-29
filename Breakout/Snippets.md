@@ -18,15 +18,20 @@ Think of it like reading a very detailed recipe.
 
 # Example
 
-    Ingredients - 1 cup of water, 4 cups of flour, 1 tablespoon yeast, 1 tsp salt
-    bowl = empty;
-    For each ingredient { // but one at a time
-	    Add ingredient to the bowl;
-	    If (ingredient == water)
-		    Stir slowly;
-	    else
-		    Stir quickly;
+    cup = new Cup
+    cup.addItems(pen, pencil, eraser, feather)
+    totalWeight = EMPTY_CUP_WEIGHT
+    For each item in cup {
+        temp = item.weight  //get the items weight
+        if (item == feather) {
+            //Do Nothing with Feathers
+        }
+        else {            
+            add the itemWeight to totalWeight
+        }
     }
+    //This next line prints out what???
+    print totalWeight
 
 # Java
 - Java is an object oriented language.
