@@ -17,10 +17,12 @@ public class Ball extends Actor
     public void changeXDirection() {
         int current = getRotation();
         setRotation(180 - current);
+        move (5);
     }
     public void changeYDirection() {
         int current = getRotation();
         setRotation(360 - current);
+        move (5);
     }
     public boolean isStuck() {
         return stuck;
