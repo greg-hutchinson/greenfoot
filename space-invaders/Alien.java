@@ -20,7 +20,7 @@ public abstract class Alien extends Actor
         int currentY = getY();
         if (newX <= 1) {
             x = -x;
-            currentY = getY() + 30;
+            currentY = getY() + 30; //
         }
         if (newX >= getWorld().getWidth() - 1) {
             x = -x;
