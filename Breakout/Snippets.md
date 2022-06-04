@@ -18,7 +18,7 @@ Think of it like reading a very detailed recipe.
 
 # Example
 
-    Ingredients - 1 cup of water, 4 cups of flour, 1 tablespoon yeast, 1 tsp salt
+    Ingredients - 4 cups of flour, 1 cup of water, 1 tablespoon yeast, 1 tsp salt
     bowl = empty;
     For each ingredient { // but one at a time
 	    Add ingredient to the bowl;
@@ -89,6 +89,33 @@ envision this:
         }
     }
 
+# Objects
+Objects can be thought of in memory as a container holding named variables for everything that is important to the Actor
+
+            +--------------+     
+            |  Rocket      |
+            +--------------+
+          x |     20       |
+            +--------------+
+          y |     30       |
+            +--------------+
+    rotation|      0       |
+            +--------------+
+      whose |  "Greg"      |
+            +--------------+
+
+
+            +--------------+
+            |  Rocket      |
+            +--------------+
+          x |     50       |
+            +--------------+
+          y |     80       |
+            +--------------+
+    rotation|    180       |
+            +--------------+
+     whose  |  "Erica"     |
+            +--------------+
 
 ## Actors can move, turn, and report where they in the world
     move(4);          //move the actor 4 cells in the current direction
@@ -120,6 +147,14 @@ Actors can do a lot more than this but that comes later.
    }
 
 ***Note:*** the use of **(** **)** and **{** **}** above - I will explain
+
+
+When you think that you need an **if** statement **always** start from this template
+
+    if (       )   {
+
+    }
+
 
 # Let's make a Ball class
 - How to create a Class
@@ -187,6 +222,10 @@ Variables are used to hold on to other Java objects. Variables must be declared 
     // Now they can be assigned to something
     x = “dsaf”;
     s = “Greg”;
+
+# Where can you declare variables
+- That's a good question - it depends.
+- If its something that the object needs to remember across act methods you need to declare them at the **class** level.
 
 # Assignment - “=”
 When you read this use the word “becomes”
@@ -344,3 +383,13 @@ of the last method, but BEFORE the last } of the class
     }
 
     }
+
+
+
+
+        boolean shouldTurnLeft  = Greenfoot.isKeyDown("left");
+        System.out.println("Current Rotation is " + getRotation());
+        if (shouldTurnLeft) {
+            int currentRotation = getRotation();  // Get which way we are point
+            setRotation (currentRotation - 1);
+        }
