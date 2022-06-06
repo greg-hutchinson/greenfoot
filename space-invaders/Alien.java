@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Alien extends Actor
+public class Alien extends Actor
 {
     /**
      * Act - do whatever the Alien wants to do. This method is called whenever
@@ -27,11 +27,17 @@ public abstract class Alien extends Actor
             currentY = getY() + 30;
         }
         setLocation(newX, currentY);
+        Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
+        if (bullet != null) {
+            SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+            world.addScore(10);
+            world.removeObject(bullet);
+            world.removeObject(this);
+        }
+
             
     }
-    public abstract int getValue();
     public void addedToWorld(World world) {
-       turn(90); 
     }
 
 }

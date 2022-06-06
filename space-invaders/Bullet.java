@@ -19,13 +19,6 @@ public class Bullet extends Actor
             getWorld().removeObject(this);
             return;
         }
-        Alien alien = (Alien) getOneIntersectingObject(Alien.class);
-        if (alien != null) {
-            SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
-            world.addScore(alien.getValue());
-            world.removeObject(alien);
-            world.removeObject(this);
-        }
     }
     
     public boolean isInWorld() {
