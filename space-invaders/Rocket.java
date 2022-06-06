@@ -13,7 +13,7 @@ public class Rocket extends Actor
      * Act - do whatever the Rocket wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
+   public void act()
     {
         if (Greenfoot.isKeyDown("left")) {
             turn (-90);

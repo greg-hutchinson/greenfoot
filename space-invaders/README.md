@@ -12,7 +12,7 @@ Remember that animation is achieved by placing an object at an x, y location on 
 
 
 ## Understanding Objects
-- Assume we have a class of Person. Each person can knows their name, age, and team that they belong too. They might also know how to do the following:
+- Assume we have a class of Person. Each person can know their name, age, and team that they belong to. They might also know how to do the following:
 sit(), stand(), moveForward(someNumberOfSteps) //More on functions later
 - Let's look at this on Miro
 https://miro.com/app/board/uXjVO6NNQBE=/?moveToWidget=3458764526885156301&cot=14
@@ -21,13 +21,34 @@ https://miro.com/app/board/uXjVO6NNQBE=/?moveToWidget=3458764526885156301&cot=14
 
 ## Understanding Actors
 Actors are the basic building blocks within Greenfoot.
-Explore how to create an Actor (Alien)
+Explore how to create an Actor (Rocket)
 - Set the icon
 - Now we will use the Greenfoot environment to look at some of the methods 
 inherited from Actor
 - turn(), getRotation(), getX(), getY(), act()
 
 Note that all Actors will have an act() method. This is where all (most) of your programming will occur.
+
+## How to know what methods that Actors can respond to.
+From your **main screen** in the Greenfoot environment, select Help then Greenfoot Class Documentation. 
+
+
+## How To Do User Input
+There is another class in the Greenfoot environment named - well - **Greenfoot**. This class provides some useful functions for communicating with the player of the game. One of these methods is the **isKeyDown** method.
+
+
+So, after we understand how this method works, we can now make our act method look like this.  We haven't discussed the **if** statement yet, but for now, I think you will get the idea.
+
+
+```Java
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("left")) {
+            move (-5);
+        }
+    }
+```
+That works great - our Rocket now moves to the left. Enhance the code so that the Rocket will also move to the right.
 
 
 ## Understanding Variables in Java
