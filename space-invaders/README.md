@@ -3,12 +3,20 @@
 ## Setting up our World
 Open Greenfoot and double-click on MyWorld.
 - Now in the editor, everywhere that there is the word MyWorld replace it with 
-SpaceInvadersWorld. (Note the capitalization). Change the size to 1024 by 800.
+SpaceInvadersWorld. (Note the capitalization). 
+- Change the size to 1024 by 800.
 // super(1024, 800, 1); 
 - Lets set a nice space type background as well.
 
+
+## Saving our Work and adding some icons and sounds
+- Take note of the directory where your work will be saved.  When you do a save as ... You should get a dialog that tells you where everything is currently being saved to. Write it down for later.  However, don't complete the save As ... - just do a save for now.
+
+
 ## Reminder - Animation
 Remember that animation is achieved by placing an object at an x, y location on the screen. Everytime the screen is redrawn if that x and/or y coordinate has changed the object will appear as if it had moved there. This can be thought of much like movie frames in film.
+
+
 
 
 ## Understanding Objects
@@ -49,6 +57,75 @@ So, after we understand how this method works, we can now make our act method lo
     }
 ```
 That works great - our Rocket now moves to the left. Enhance the code so that the Rocket will also move to the right.
+
+### First Exercise - Create some objects
+- Create a Rocket subclass (from Actor)
+    - set the icon
+    - make your Actor move across the screen from right to left 8 pixels when the left or right arrow keys are pressed.
+
+
+
+## Our first Bug...
+It seems that our Rocket is facing the wrong direction. Actually, this is the right direction as by default all objects are to be facing east (0 degrees) but I digress.
+To fix this bug we need to figure out a different strategy.
+Well, luckily we know that we can turn our object by any number of degrees or we can set it's rotation (setRotation()) but we only need to do this once - not everytime the Rocket is asked to act(). As it turns out, all actors are also sent a special method call addToWorld(World world) once (and only once) whenever they are added to the world. This is convenient to do some one time initialization. Let's see how this works.
+
+```Java
+    public void addedToWorld(World world) {
+        setRotation(270);    
+    }
+```
+Note: This must come after the act() method (After the last  **}** in **act** ) but before the last **}** in the class Rocket.
+
+This method is called by the Greenfoot system only if it exists in the class and again, it is only called once.
+
+This has solved one problem for us, but has now introduced a problem with the way we move.
+
+## A different way to move
+We have a problem - we want our Rocket to move east or west but it is facing north.
+Now we have to think about the coordinate system. Assume that the rocket is sitting somewhere near the bottom of the screen at let say 200, 800 (x = 200, y = 800).
+If the left arrow key is pushed, we would like the rocket to be at a new location of x = 192, y = 800. Of course, if the right arrow key had been pushed we would have expected the Rocket to be at x = 208, y = 800 and if the right arrow key was pushed again then the Rocket would be at x = 216, y = 800 and so on. Notice the y coordinate does not change because we only want the rocket to move left or right not up and down.
+So let's see how this might be in code. 
+
+``` Java
+    public void act()
+    {
+        int currentX;
+        int newX;
+        int newY;
+        currentX = getX();
+        newX = getX();  // Assume the new x will be the same as the old
+        if (Greenfoot.isKeyDown("left")) {
+            newX = currentX - 8; //We need to change
+        }
+        if (Greenfoot.isKeyDown("right")) {
+            newX = currentX + 8;
+        }
+        newY = getY();  // The y position will not change
+        setLocation(newX, newY);
+        
+    }
+```
+Let's picture this in memory
+
+                +-----------+
+    currentX    |   300     |   // result from getX()
+                +-----------+
+
+                +-----------+
+    newX        |   300     |   // result from getX()
+                +-----------+
+
+                +-----------+
+    newY        |   800     |   // result from getY()
+                +-----------+
+
+
+
+## Exercise 
+- Make the changes to your Rocket class.
+- Create a new class Alien.
+- Make your Alien move across the screen from right to left by 3 pixels or so.
 
 
 ## Understanding Variables in Java
@@ -109,30 +186,21 @@ Variables must be defined within the class you are working in.
     }
 ```
 
-### First Exercise - Create some objects
-- Create an Alien subclass (from Actor)
-    - set the icon
-    - make your Actor move across the screen from left to right 5 pixels
-- Create a Rocket subclass (from Actor)
-    - set the icon
-    - make your Actor move across the screen from right to left 8 pixels
-
-After you have the above working, change the numbers in your move statement to use a variable of type int.
-
-
 
 ## Understanding the if statement
 # The “If” statement
 The if statement must occur within your act() method.
 ```Java
     ...
-    if ( someBooleanExpression ) {
+    if ( someBooleanExpression ) 
+    {
         statement1;
         statement2;
             ...
         statementN;
     }
-    else {
+    else 
+    {
         elseStatement1;
         elseStatement2;
             ...
@@ -176,9 +244,12 @@ if (getX() <= 1) {
         }
         setLocation(newX, currentY);
     }
-
-
 ```
+
+The above snippet should help you modify your Alien class so that it bounces.  Make the above changes to your Alien class.
+Once you have that working, think about the following: How would you make the Aliens move down the screen (when they get to one side or the other) closer and closer to the Rocket until they crash into the Rocket??
+
+If you think that you know how to do that, please try on your own.
 
 
 
@@ -200,60 +271,85 @@ if (getX() <= 1) {
     }
 ```     
 
+## The Bullet Class
+For now we have enough to create a Bullet class.
+- Assign it an appropriate icon (Use one of the small ball classes for now. We can tweak icons later.)
+- By default it should also have its rotation facing north. (up)
+- When it is on the screen it should move with velocity of 10.
+- If it hits the top of the screen it should be gone. To remove an object from the screen is to remove it from the world and that looks like this:
+```Java
+    SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+    world.removeObject (this);  
+```
+Hint: removing objects from the world has to be the last thing in an act method.
+
+Now drop this Bullet on the screen and test that it behaves as expected. We will get it to fire from the rocket in the next section. However, notice that this class is a little different from all the other classes because it doesn't already exist on the screen from the first moment. Normally, this would be created on the fly - (I.e - when someone hits the space bar)
+
+
+## Dynamic Object Creation 
+Now that we have all the behaviour working in the bullet class it would be nice if we could hit the space bar to fire a bullet (or missile or phaser). To create a Bullet on the fly, we need a snippet of code that looks like this:
+
+```Java 
+    Bullet bullet = new Bullet();
+    getWorld().addObject(bullet,???, ???); //Where (x,y) should it be added?            
+```
+
+Well we know that the x coordiant will be the same as the x coordinate of the Rocket and the y coordinate (slightly modified) will be as well. So this following snippet might do the trick.
+
+```Java
+    Bullet bullet = new Bullet();
+    getWorld().addObject(bullet,getX(), getY() - 10);            
+```
+
+### Exercise - Add the dynamic creation of the Bullet to the Rocket class
+Hints:
+- you know how to do if statements
+- you know how to get keyboard input.
+
+Problems: It looks like a lot of bullets are being fired. There should only be one. You will have to import Java.util.List below.
+
+```Java
+List <Bullet> bullets = getWorld().getObjects(Bullet.class);
+if (bullets.isEmpty()) 
+{
+    if (Greenfoot.isKeyDown("space")) 
+    {
+        Bullet bullet = new Bullet();
+        getWorld().addObject(bullet,getX(), getY() - 10 ;            
+    }
+}
+```
 
 
 
 
 ## Collision Detection.
-```Java
-        Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
-        if (bullet != null) {
-            SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
-            world.addScore(10);
-            world.removeObject(bullet);
-            world.removeObject(this);
-        }
+Now all that we need to know is whether the Alien is hit by a bullet.
+This is called collision detection and the way that this works is by asking the Actor whether there is one intersecting object currently touching the Actor (Alien). If there is, that object will be returned in a variable otherwise **null** will be returned.
 
+So within the Alien class, in the act method after everything else (but still in the act method) add these lines of code.
+
+```Java
+Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
+if (bullet != null) 
+{
+    SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+    // world.addScore(10);
+    world.removeObject(bullet);
+    world.removeObject(this);
+}
 ```
 
+## Adding Scores
+- Import the Label class
 
-
-## Functions
-- Notice the difference in Functions
-
-
-Exercise
-- Create an Alien
-
-
-
-## Explain Object relationships
+## Adding more Aliens - Understanding for loops
 
 
 
 
-## Understanding the Environment
-
-
-## Understanding Java
-
-
-
-
-
-The first thing that we want to get working is to add some Aliens to our World that allows them to March across the screen.
-
-
-1. Create a Class Crab
-1. Give it an appropriate Icon
-1. Make it move left to right on the screen. This should look funny because the crab is facing the wrong direction. How are we going to fix that?
-1. Now when the crab gets to the border of the screen he should bounce. (go the other sideways direction)
-
-
-
-
-
-Some useful Snippets of Code.
+## Some useful Snippets of Code.
+### Getting the World
 Whenever you need to get information to or from the SpaceInvadersWorld you need to do it with this line of code.
 ```Java
     SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
@@ -266,4 +362,10 @@ Now you can invoke methods that exist within your SpaceInvadersWorld class like 
     SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
     int width = world.getWidth();
 ```
+
+### Printing to the console.
+```Java
+    System.out.println ("The value of x is" + getX()");
+```
+
 

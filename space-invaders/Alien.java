@@ -8,11 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Alien extends Actor
 {
-    /**
-     * Act - do whatever the Alien wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    int x = -1;
+    int x = -3;
     public void act()
     {
         int currentX = getX();
@@ -37,7 +33,4 @@ public class Alien extends Actor
 
             
     }
-    public void addedToWorld(World world) {
-    }
-
 }

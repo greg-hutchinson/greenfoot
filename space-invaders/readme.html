@@ -1,0 +1,205 @@
+<h1>SpaceInvaders Tutorial</h1>
+<h2>Setting up our World</h2>
+<p>Open Greenfoot and double-click on MyWorld.</p>
+<ul>
+<li>Now in the editor, everywhere that there is the word MyWorld replace it with
+SpaceInvadersWorld. (Note the capitalization). Change the size to 1024 by 800.
+// super(1024, 800, 1);</li>
+<li>Lets set a nice space type background as well.</li>
+</ul>
+<h2>Reminder - Animation</h2>
+<p>Remember that animation is achieved by placing an object at an x, y location on the screen. Everytime the screen is redrawn if that x and/or y coordinate has changed the object will appear as if it had moved there. This can be thought of much like movie frames in film.</p>
+<h2>Understanding Objects</h2>
+<ul>
+<li>Assume we have a class of Person. Each person can know their name, age, and team that they belong to. They might also know how to do the following:
+sit(), stand(), moveForward(someNumberOfSteps) //More on functions later</li>
+<li>Let's look at this on Miro
+https://miro.com/app/board/uXjVO6NNQBE=/?moveToWidget=3458764526885156301&amp;cot=14</li>
+</ul>
+<h2>Understanding Actors</h2>
+<p>Actors are the basic building blocks within Greenfoot.
+Explore how to create an Actor (Rocket)</p>
+<ul>
+<li>Set the icon</li>
+<li>Now we will use the Greenfoot environment to look at some of the methods
+inherited from Actor</li>
+<li>turn(), getRotation(), getX(), getY(), act()</li>
+</ul>
+<p>Note that all Actors will have an act() method. This is where all (most) of your programming will occur.</p>
+<h2>How to know what methods that Actors can respond to.</h2>
+<p>From your <strong>main screen</strong> in the Greenfoot environment, select Help then Greenfoot Class Documentation.</p>
+<h2>How To Do User Input</h2>
+<p>There is another class in the Greenfoot environment named - well - <strong>Greenfoot</strong>. This class provides some useful functions for communicating with the player of the game. One of these methods is the <strong>isKeyDown</strong> method.</p>
+<p>So, after we understand how this method works, we can now make our act method look like this.  We haven't discussed the <strong>if</strong> statement yet, but for now, I think you will get the idea.</p>
+<pre><code class="language-Java">    public void act()
+    {
+        if (Greenfoot.isKeyDown(&quot;left&quot;)) {
+            move (-5);
+        }
+    }
+</code></pre>
+<p>That works great - our Rocket now moves to the left. Enhance the code so that the Rocket will also move to the right.</p>
+<h2>Understanding Variables in Java</h2>
+<p>Variables are things that can hold on to values that might change over the course of your program. Variables can be thought of as labelled &quot;pockets&quot; or &quot;boxes&quot; to hold things until you later want to retrieve the things or change the things. When we <strong>declare</strong> a variable we must also declare what <strong>type</strong> of object this variable is going to hold on to. For example, if I want a variable to hold on to the current x coordinate of something I might declare it like this.</p>
+<pre><code>int x;
+</code></pre>
+<p>This says that x is a variable (named box) that can hold onto any integer value. (Integers are whole numbers - positive or negative).</p>
+<p>Remember that any time you declare a variable you always declare the type first. So the general form for declaring variables is</p>
+<p><strong>someType</strong> <strong>variableName</strong></p>
+<p>where some common <strong>someTypes</strong> are int, String, Object, or Rocket.</p>
+<p>And remember to think of it as a named box where a value can be put in or taken out.</p>
+<pre><code>  +-----------+
+x |   300     |
+  +-----------+
+</code></pre>
+<p>The way that we put things into the box is by assigning a value to the box. (i.e the value 300 was put into the above box by the following code)</p>
+<pre><code>x = 300;    //Note the semicolon at the end;
+</code></pre>
+<p>and the way that we get values out of the box later is by refering to the box name.</p>
+<pre><code>y = x + 1; 
+</code></pre>
+<p>IMPORTANT NOTE:
+When there is an &quot;=&quot; sign you need to think of it as an assignment operation not as a mathematical equality sign so the above should be said as
+&quot;Take whatever is in box x, add 1 to it and put it in box y&quot;</p>
+<p>This would result in the following:</p>
+<pre><code>  +-----------+
+x |   300     |
+  +-----------+
+
+  +-----------+
+y |   301     |
+  +-----------+
+</code></pre>
+<p>Variables must be defined within the class you are working in.</p>
+<pre><code class="language-Java">    public class YourClass extends Actor
+    {
+        //Variables must be defined here before the act method.
+        //This is not always true, but for now - just trust me. :-)
+
+        int numberOfPixels = 5;
+
+        public void act() {
+    	     move(5);   // hard-coded 5
+             // is the same as ...
+             move(numberOfPixels);
+        }
+    }
+</code></pre>
+<h3>First Exercise - Create some objects</h3>
+<ul>
+<li>Create an Alien subclass (from Actor)
+<ul>
+<li>set the icon</li>
+<li>make your Actor move across the screen from left to right 5 pixels</li>
+</ul>
+</li>
+<li>Create a Rocket subclass (from Actor)
+<ul>
+<li>set the icon</li>
+<li>make your Actor move across the screen from right to left 8 pixels</li>
+</ul>
+</li>
+</ul>
+<p>After you have the above working, change the numbers in your move statement to use a variable of type int.</p>
+<h2>Understanding the if statement</h2>
+<h1>The “If” statement</h1>
+<p>The if statement must occur within your act() method.</p>
+<pre><code class="language-Java">    ...
+    if ( someBooleanExpression ) {
+        statement1;
+        statement2;
+            ...
+        statementN;
+    }
+    else {
+        elseStatement1;
+        elseStatement2;
+            ...
+        elseStatementN;
+      }
+   }
+</code></pre>
+<p>Let's break that down - firstly what is someBooleanExpression. It is an expression that after it is evaluate results in a &quot;true&quot; or &quot;false&quot; value.  For example</p>
+<pre><code>4 &lt;= 6;  // this results in a &quot;true&quot; value
+</code></pre>
+<p>or</p>
+<pre><code>int y = 10;
+y &lt;= 6;  // this results in a &quot;false&quot; value.
+</code></pre>
+<p>or say that getX() is a function that currently returns 1 (If the Actor
+was against the left side of the screen) then</p>
+<pre><code>getX() &lt;= 1    //this results in a &quot;true&quot; value.
+</code></pre>
+<p>Combining this we now have a valid &quot;if&quot; statement</p>
+<pre><code class="language-Java">if (getX() &lt;= 1) {
+    // Do something that makes sense here
+    // Like ... Let's bounce 
+}
+</code></pre>
+<pre><code class="language-Java">    public void act()
+    {
+        int currentX = getX();
+        int newX = currentX + x;
+        if (newX &lt;= 1) {
+            x = -x;
+        }
+        if (newX &gt;= getWorld().getWidth() - 1) {
+            x = -x;
+        }
+        setLocation(newX, currentY);
+    }
+
+
+</code></pre>
+<pre><code class="language-Java">    public void act()
+    {
+        int currentX = getX();
+        int newX = currentX + x;
+        int currentY = getY();
+        if (newX &lt;= 1) {
+            x = -x;
+            currentY = getY() + 30; //
+        }
+        if (newX &gt;= getWorld().getWidth() - 1) {
+            x = -x;
+            currentY = getY() + 30;
+        }
+        setLocation(newX, currentY);
+    }
+</code></pre>
+<h2>Collision Detection.</h2>
+<pre><code class="language-Java">        Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
+        if (bullet != null) {
+            SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+            world.addScore(10);
+            world.removeObject(bullet);
+            world.removeObject(this);
+        }
+
+</code></pre>
+<h2>Functions</h2>
+<ul>
+<li>Notice the difference in Functions</li>
+</ul>
+<p>Exercise</p>
+<ul>
+<li>Create an Alien</li>
+</ul>
+<h2>Explain Object relationships</h2>
+<h2>Understanding the Environment</h2>
+<h2>Understanding Java</h2>
+<p>The first thing that we want to get working is to add some Aliens to our World that allows them to March across the screen.</p>
+<ol>
+<li>Create a Class Crab</li>
+<li>Give it an appropriate Icon</li>
+<li>Make it move left to right on the screen. This should look funny because the crab is facing the wrong direction. How are we going to fix that?</li>
+<li>Now when the crab gets to the border of the screen he should bounce. (go the other sideways direction)</li>
+</ol>
+<p>Some useful Snippets of Code.
+Whenever you need to get information to or from the SpaceInvadersWorld you need to do it with this line of code.</p>
+<pre><code class="language-Java">    SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+</code></pre>
+<p>Now you can invoke methods that exist within your SpaceInvadersWorld class like such</p>
+<pre><code class="language-Java">    SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+    int width = world.getWidth();
+</code></pre>

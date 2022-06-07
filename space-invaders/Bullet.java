@@ -14,14 +14,17 @@ public class Bullet extends Actor
      */
     public void act()
     {
-        move (5);
-        if (getY() <= 1) {
+        move(10);
+        if (getY() <= 1) 
+        {
             getWorld().removeObject(this);
             return;
         }
+
     }
     
-    public boolean isInWorld() {
-        return getWorld().getObjects(Alien.class).contains(this);  
+    public void addedToWorld(World world) {
+        setRotation(270);
     }
+
 }
