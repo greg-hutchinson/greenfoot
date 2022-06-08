@@ -310,7 +310,7 @@ Problems: It looks like a lot of bullets are being fired. There should only be o
 
 ```Java
 List <Bullet> bullets = getWorld().getObjects(Bullet.class);
-if (bullets.isEmpty()) 
+if (bullets.isEmpty()) // No bullets have been fired
 {
     if (Greenfoot.isKeyDown("space")) 
     {
