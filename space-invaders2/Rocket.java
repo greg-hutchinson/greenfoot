@@ -13,6 +13,7 @@ public class Rocket extends Actor
      * Act - do whatever the Rocket wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    GreenfootSound sound = new GreenfootSound("laser.mp3");
     public void act()
     {
         if (Greenfoot.isKeyDown("left")) 
@@ -28,7 +29,8 @@ public class Rocket extends Actor
             if (Greenfoot.isKeyDown("space")) {
                 Bullet bullet = new Bullet();
                 bullet.turn(-90);
-                getWorld().addObject(bullet,getX(), getY() - 10);            
+                getWorld().addObject(bullet,getX(), getY() - 10);  
+                sound.play();
             }
     }
     

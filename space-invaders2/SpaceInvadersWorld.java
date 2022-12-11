@@ -10,6 +10,7 @@ public class SpaceInvadersWorld extends World
 {
     Label scoreLabel;
     int score = 0;
+    GreenfootSound backgroundMusic = new GreenfootSound("heartbeat.mp3");
     /**
      * Constructor for objects of class SpaceInvadersWorld.
      * 
@@ -25,6 +26,14 @@ public class SpaceInvadersWorld extends World
         initializeRocket();
         initialAliens();
         initializeLabel();
+    }
+    
+    public void started() {
+        backgroundMusic.playLoop();
+    }
+
+    public void stopped() {
+        backgroundMusic.stop();
     }
     
     private void initializeRocket() {
@@ -52,5 +61,5 @@ public class SpaceInvadersWorld extends World
         score = score + anIncrement;
         scoreLabel.setValue("Score: " + score);
     }
-
+    
 }
