@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PartAlien extends Actor
 {
-    int count = 25;
+    int count = 35;
     /**
      * Act - do whatever the PartAlien wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Alien extends Actor
 {
-    public static int DELAY_PERIOD = 1;
+    public static int DELAY_PERIOD = 50;
     int x = -14;
+    int degrees = 20;
     int delay = DELAY_PERIOD;
     public void act()
     {
@@ -48,6 +49,8 @@ public class Alien extends Actor
         if (getX() >= getWorld().getWidth() - 5) {
             world.alienStruckWall();
         }
+//        getImage().rotate(degrees);
+//        degrees = -degrees;
             
     }
     public void drop() {
@@ -57,5 +60,8 @@ public class Alien extends Actor
         int currentY = getY() + 30;
         setLocation(newX, currentY);
        
+    }
+    public void addedToWorld(World world) {
+//        getImage().rotate(-degrees / 2);
     }
 }
