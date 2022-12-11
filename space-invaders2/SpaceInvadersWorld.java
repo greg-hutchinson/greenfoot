@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class SpaceInvadersWorld here.
@@ -11,6 +12,7 @@ public class SpaceInvadersWorld extends World
     Label scoreLabel;
     int score = 0;
     GreenfootSound backgroundMusic = new GreenfootSound("heartbeat.mp3");
+    private boolean alienStruckWall = false;
     /**
      * Constructor for objects of class SpaceInvadersWorld.
      * 
@@ -36,6 +38,22 @@ public class SpaceInvadersWorld extends World
         backgroundMusic.stop();
     }
     
+    public void act() {
+        if (alienStruckWall) {
+            alienStruckWall = false;
+            informAliens();
+        }
+    }
+    
+    public void alienStruckWall() {
+        alienStruckWall = true;
+    }
+    
+    public void informAliens() {
+        for (Alien alien : getObjects(Alien.class))
+            alien.drop();
+    }
+
     private void initializeRocket() {
         Rocket rocket = new Rocket();
         addObject(rocket, 500, 760);        
@@ -44,7 +62,7 @@ public class SpaceInvadersWorld extends World
     private void initialAliens() {
         int spacing = 60;
         for (int y = 100; y <= 200; y = y + 100) {
-            for (int x = 200; x < 1000; x = x + spacing) 
+            for (int x = 50; x < 1000; x = x + spacing) 
             {
                 Alien alien = new Alien();
                 addObject(alien, x, y);

@@ -8,21 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Alien extends Actor
 {
-    int x = -3;
+    public static int DELAY_PERIOD = 1;
+    int x = -14;
+    int delay = DELAY_PERIOD;
     public void act()
     {
-        int currentX = getX();
-        int newX = currentX + x;
-        int currentY = getY();
-        if (newX <= 1) {
-            x = -x;
-            currentY = getY() + 30; //
-        }
-        if (newX >= getWorld().getWidth() - 1) {
-            x = -x;
-            currentY = getY() + 30;
-        }
-        setLocation(newX, currentY);
         Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
         if (bullet != null) {
             SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
@@ -40,8 +30,32 @@ public class Alien extends Actor
             alien.setImage(new GreenfootImage("green-alien-part3.png"));
             world.addObject(alien, getX(), getY());
             world.removeObject(this);
+            return;
         }
 
+        if (delay-- > 0) {
+            return;
+        }
+        delay = DELAY_PERIOD;
+        int currentX = getX();
+        int newX = currentX + x;
+        int currentY = getY();
+        setLocation(newX, currentY);
+        SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+        if (getX() <= 5) {
+            world.alienStruckWall();
+        }
+        if (getX() >= getWorld().getWidth() - 5) {
+            world.alienStruckWall();
+        }
             
+    }
+    public void drop() {
+        int currentX = getX();
+        x = -x;
+        int newX = currentX + x;
+        int currentY = getY() + 30;
+        setLocation(newX, currentY);
+       
     }
 }
