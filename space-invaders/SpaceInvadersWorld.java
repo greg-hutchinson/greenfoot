@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class SpaceInvadersWorld here.
@@ -10,6 +11,8 @@ public class SpaceInvadersWorld extends World
 {
     Label scoreLabel;
     int score = 0;
+    GreenfootSound backgroundMusic = new GreenfootSound("heartbeat.mp3");
+    private boolean alienStruckWall = false;
     /**
      * Constructor for objects of class SpaceInvadersWorld.
      * 
@@ -17,40 +20,75 @@ public class SpaceInvadersWorld extends World
     public SpaceInvadersWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1024, 800, 1); 
+        super(1200, 800, 1); 
         prepare();
     }
     
     public void prepare() {
         initializeRocket();
-        initialAliens();
+        initializeAliens();
+        initializeBarriers();
         initializeLabel();
     }
     
+    public void started() {
+        backgroundMusic.playLoop();
+    }
+
+    public void stopped() {
+        backgroundMusic.stop();
+    }
+    
+    public void act() {
+        if (alienStruckWall) {
+            alienStruckWall = false;
+            informAliens();
+        }
+    }
+    
+    public void alienStruckWall() {
+        alienStruckWall = true;
+    }
+    
+    public void informAliens() {
+        for (Alien alien : getObjects(Alien.class))
+            alien.drop();
+    }
+
     private void initializeRocket() {
         Rocket rocket = new Rocket();
-        addObject(rocket, 500, 760);        
+        addObject(rocket, getWidth() / 2, getHeight() - 30);        
     }
         
-    private void initialAliens() {
+    private void initializeAliens() {
         int spacing = 60;
-        for (int y = 100; y <= 200; y = y + 100) {
-            for (int x = 200; x < 1000; x = x + spacing) 
+        for (int y = 100; y <= 300; y = y + 75) {
+            for (int x = 50; x < getWidth(); x = x + spacing) 
             {
                 Alien alien = new Alien();
                 addObject(alien, x, y);
             }                    
         }
     }
+
+    private void initializeBarriers() {
+        int spacing = 300;
+        int y = getHeight() - 200;
+        for (int x = 50; x < getWidth(); x = x + spacing) 
+        {
+            Barrier barrier = new Barrier();
+            addObject(barrier, x, y);
+        }                    
+    }
     
     private void initializeLabel() {
         scoreLabel = new Label("Score: 0", 30);
-        addObject(scoreLabel, 900, 40);        
+        addObject(scoreLabel, getWidth() - 100, 40);        
     }
 
     public void addScore(int anIncrement) {
         score = score + anIncrement;
         scoreLabel.setValue("Score: " + score);
     }
-
+    
 }

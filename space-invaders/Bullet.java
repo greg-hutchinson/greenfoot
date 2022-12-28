@@ -21,10 +21,11 @@ public class Bullet extends Actor
             return;
         }
 
+
     }
     
     public void addedToWorld(World world) {
-        setRotation(270);
+       // setRotation(90);
     }
 
 }
