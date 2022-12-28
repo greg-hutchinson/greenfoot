@@ -14,8 +14,10 @@ Watch this video https://youtu.be/eIrMbAQSU34?t=240 starting at the 4 minute mar
 ### Comments
 Since we are writing **code**, sometimes it is difficult to understand what is going on in the code and we need to leave ourselves some **notes**. So the way that we do that is called comments. Comments in Java come in 2 flavours.
 
+:star: *
+
 * Multiline comments
-** These are started by an /*  and are terminated by a */ which can span multiple lines
+** These are started by an */{star}*  and are terminated by a *{star}/* which can span multiple lines
 * Ignore to end-of-line comments.
 ** These are designated by a **//** and everything following on the same line will be ignored.
 
@@ -35,7 +37,7 @@ by the next line which contains the special ending 2 characters.
 }
 ----
 
-### Round brackets and Braces
+### Round Brackets and Braces
 There is a rule in Java that for every open bracket or brace you will have a closing bracket or brace. As simple as this sounds, it is easy to forget and you will get caught on this. It takes practice to get this right. If you watched the video above, ignore his comment about putting braces on the same line as the class or function; we are going to always start them on the following line.
 
 
@@ -54,7 +56,7 @@ public class Rocket extends Actor
 }   <1>
 ----
 <1> Notice that these braces line up - both at column 1 - they define everything within the _class_ **Rocket**. This includes the method act().
-<2> Notice that these braces line up - both at column 3 - they define everything within the _method_ **act**.
+<2> Notice that these braces line up - both at column 4 - they define everything within the _method_ **act**.
 
 
 Now, some more explanation is in order. In Greenfoot, there will be a class created for every visual object that we want to create, which are called **actors**. So if we were creating a game where there was a ball that we wanted to hit with a paddle that would bounce around the screen to maybe hit some bricks, we would create a class each for the visual object **Ball**, **Paddle**, and **Brick**. In total - 3 classes.
