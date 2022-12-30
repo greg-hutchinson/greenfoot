@@ -19,17 +19,7 @@ public class Alien extends Actor
             SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
             world.addScore(10);
             world.removeObject(bullet);
-            PartAlien alien = new PartAlien();
-            alien.setImage(new GreenfootImage("green-alien-part1.png"));
-            world.addObject(alien, getX(), getY());
-            
-            alien = new PartAlien();
-            alien.setImage(new GreenfootImage("green-alien-part2.png"));
-            world.addObject(alien, getX(), getY());
-            
-            alien = new PartAlien();
-            alien.setImage(new GreenfootImage("green-alien-part3.png"));
-            world.addObject(alien, getX(), getY());
+            explodeAlien();
             world.removeObject(this);
             return;
         }
@@ -53,6 +43,21 @@ public class Alien extends Actor
 //        degrees = -degrees;
             
     }
+    private void explodeAlien() {
+        SpaceInvadersWorld world = getWorldOfType(SpaceInvadersWorld.class);
+        PartAlien alien = new PartAlien();
+        alien.setImage(new GreenfootImage("green-alien-part1.png"));
+        world.addObject(alien, getX(), getY());
+            
+        alien = new PartAlien();
+        alien.setImage(new GreenfootImage("green-alien-part2.png"));
+        world.addObject(alien, getX(), getY());
+            
+        alien = new PartAlien();
+        alien.setImage(new GreenfootImage("green-alien-part3.png"));
+        world.addObject(alien, getX(), getY());
+    }
+    
     public void drop() {
         int currentX = getX();
         x = -x;

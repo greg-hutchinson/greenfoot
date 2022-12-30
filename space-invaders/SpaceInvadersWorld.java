@@ -73,7 +73,7 @@ public class SpaceInvadersWorld extends World
 
     private void initializeBarriers() {
         int spacing = 300;
-        int y = getHeight() - 200;
+        int y = getHeight() - 120;
         for (int x = 50; x < getWidth(); x = x + spacing) 
         {
             Barrier barrier = new Barrier();

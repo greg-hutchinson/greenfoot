@@ -18,12 +18,15 @@ public class Rocket extends Actor
     {
         if (Greenfoot.isKeyDown("left")) 
         {
-            setLocation(getX() - 5, getY());
+            setRotation(180);
+            move(5);
         }
         if (Greenfoot.isKeyDown("right")) 
         {
-            setLocation(getX() + 5, getY());
+            setRotation(0);
+            move(5);
         }
+        setRotation(270);
         List <Bullet> bullets = getWorld().getObjects(Bullet.class);
         if (bullets.isEmpty())
             if (Greenfoot.isKeyDown("space")) {
