@@ -1,0 +1,50 @@
+= Variables
+:source-highlighter: pygments
+
+Declaring Variables:
+All variables in Java must be DECLARED before they can be used. The way that variables are declared are as follows:
+type variableName;
+or
+type variableName = someInitialValue;
+Where type is either one of the base types: (int, long, char, float) or the name of a class (String, Robot, Rocket, Alien)
+
+Let's look at some simple examples:
+int age;        or int age = 63;
+float pi;       or float pi = 3.14;
+String name;    or String name = "Greg";
+
+Anytime we declare a variable we have to think of it as "naming a box (slot) that we can put things into). So above we can now think of these as:
+[cols="1,1,1"]
+|===
+|Name |Type | Value
+
+|age
+|int
+|63
+
+|pi
+|float
+|3.14
+
+|name
+|String
+|"Greg"
+
+|===
+
+Notice that String is actually a class but it is so common that we treat it like a base type.
+More complex types can be organized into other Classes that are made up of several attributes. For example we may create a Person class that has the attributes, firstName, lastName, age, etc. and we maybe can declare some variables to be instances to represent the individual people. This might look like this:
+
+[source, java]
+----
+Person greg = new Person("Greg", "Hutchinson", 63);
+Person janet = new Person("Janet", "Cook", 39);
+Person person = new Person("Frank", "Smith", 22);
+----
+
+Notice the last line here. Remember that Person and person are too different things. The first one (with the capitalized P) is the name of the type (the class Person) and the second use of the word person is the name of the variable (just like greg and janet were names of the variables). Quite often if there is only one instance of a class we will name things like this and then you might see code that looks like this.
+[source, java]
+----
+Bullet bullet = new Bullet();
+----
+That seems like a lot of Bullets. More on this in class.

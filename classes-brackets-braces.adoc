@@ -1,4 +1,5 @@
-## Classes, Brackets and Braces Oh My
+# Classes, Brackets and Braces Oh My
+:source-highlighter: pygments
 
 This is suggested reading before the class starts. It is very technical and you probably will not understand everything, (this is to be expected don't get frustrated) however, since it is difficult to understand it will help you a lot when I explain it again in the class.
 You are going to be writing code and while most of us think that computers are really smart but they are actually really stupid and they need very precise instructions to do simple things. And you will get stuck by many things that seem trivial as in:
@@ -11,7 +12,7 @@ Firstly, we have to start with some common constructs in Java.
 
 Watch this video https://youtu.be/eIrMbAQSU34?t=240 starting at the 4 minute mark until it reaches 8:40. (Running time 4 Min 40 seconds). This will give you a quick overview of the anatomy of a Java Program. 
 
-### Comments
+## Comments
 Since we are writing **code**, sometimes it is difficult to understand what is going on in the code and we need to leave ourselves some **notes**. So the way that we do that is called comments. Comments in Java come in 2 flavours.
 
 :star: *
@@ -37,11 +38,11 @@ by the next line which contains the special ending 2 characters.
 }
 ----
 
-### Round Brackets and Braces
+## Round Brackets and Braces
 There is a rule in Java that for every open bracket or brace you will have a closing bracket or brace. As simple as this sounds, it is easy to forget and you will get caught on this. It takes practice to get this right. If you watched the video above, ignore his comment about putting braces on the same line as the class or function; we are going to always start them on the following line.
 
 
-### Classes and Methods
+## Classes and Methods
 All code is organized around classes in Java. Within the Greenfoot environment most of our classes will start off looking very similar to this. Pay attention only to the braces and brackets below.
 
 [source,java]
