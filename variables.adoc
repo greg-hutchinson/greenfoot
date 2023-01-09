@@ -1,17 +1,25 @@
 = Variables
 :source-highlighter: pygments
 
-Declaring Variables:
+== Declaring Variables:
 All variables in Java must be DECLARED before they can be used. The way that variables are declared are as follows:
+
+[source, java]
+----
 type variableName;
-or
+//or
 type variableName = someInitialValue;
+----
+
 Where type is either one of the base types: (int, long, char, float) or the name of a class (String, Robot, Rocket, Alien)
 
 Let's look at some simple examples:
-int age;        or int age = 63;
-float pi;       or float pi = 3.14;
-String name;    or String name = "Greg";
+[source, java]
+----
+int age;        //  or int age = 63;
+float pi;       //  or float pi = 3.14;
+String name;    //  or String name = "Greg";
+----
 
 Anytime we declare a variable we have to think of it as "naming a box (slot) that we can put things into). So above we can now think of these as:
 [cols="1,1,1"]
@@ -47,4 +55,28 @@ Notice the last line here. Remember that Person and person are too different thi
 ----
 Bullet bullet = new Bullet();
 ----
-That seems like a lot of Bullets. More on this in class.
+That seems like a lot of the word Bullets. More on this in class.
+
+== Assignment of values to variables.
+The assignment operator is the **=** sign.  This is different than the comparator operator **==**. More on this one later.
+Whenever you see the **=** operator you have to process things in the following order. 
+* Calculate whatever is on the right hand side (RHS) of the **=** sign. This will result in a value or an object. 
+* Now take this value or object and place it in the variable (slot) that is named on the left hand side.
+This can now give us code like the following.
+
+[source, java]
+----
+int x;
+x = 10 + 5;     //Calculate RHS, store in variable on LHS - this is easy to understand
+//If you look at this next line mathematically, it looks incorrect.
+x = x + 1;      //but apply the rules above - calc RHS first
+// What is the current value of x?
+
+//Now with objects
+String s;
+s = "String addition is called " + "concatenation."
+
+//The RHS results in an instance of a Bullet object
+//Store it in the variable named on the LHS - ie b of Type Bullet.
+Bullet b = new Bullet();  
+----

@@ -12,6 +12,9 @@ public class Alien extends Actor
     int x = -14;
     int degrees = 20;
     int delay = DELAY_PERIOD;
+    int numberOfSecondsToDropBomb = Greenfoot.getRandomNumber(20) + 5;
+    long lastDroppedTime = System.currentTimeMillis() / 1000;
+
     public void act()
     {
         Bullet bullet = (Bullet) getOneIntersectingObject(Bullet.class);
@@ -39,8 +42,13 @@ public class Alien extends Actor
         if (getX() >= getWorld().getWidth() - 5) {
             world.alienStruckWall();
         }
-//        getImage().rotate(degrees);
-//        degrees = -degrees;
+        long current = System.currentTimeMillis() / 1000;
+        if (lastDroppedTime + numberOfSecondsToDropBomb <= current) {
+            Bomb bomb = new Bomb();
+            bomb.setRotation(90);
+            getWorld().addObject(bomb, getX(),getY()+40);
+            lastDroppedTime = current;
+        }
             
     }
     private void explodeAlien() {

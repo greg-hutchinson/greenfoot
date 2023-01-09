@@ -14,6 +14,10 @@ public class Bomb extends Actor
      */
     public void act()
     {
-        // Add your action code here.
+        move(2);
+        if (getY() >= getWorld().getHeight() - 1)
+        {
+            getWorld().removeObject(this);
+        }
     }
 }
