@@ -12,7 +12,7 @@ public class Alien extends Actor
     int x = -14;
     int degrees = 20;
     int delay = DELAY_PERIOD;
-    int numberOfSecondsToDropBomb = Greenfoot.getRandomNumber(20) + 5;
+    int numberOfSecondsToDropBomb = Greenfoot.getRandomNumber(20) + 10;
     long lastDroppedTime = System.currentTimeMillis() / 1000;
 
     public void act()

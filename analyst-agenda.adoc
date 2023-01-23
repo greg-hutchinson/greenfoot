@@ -1,0 +1,8 @@
+
+# Agenda
+
+* Ice Breaker
+* Pair Programming - The rules
+* Greenfoot and SpaceInvaders
+* Refactoring
+* Unit Testing

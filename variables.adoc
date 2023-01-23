@@ -46,7 +46,7 @@ More complex types can be organized into other Classes that are made up of sever
 [source, java]
 ----
 Person greg = new Person("Greg", "Hutchinson", 63);
-Person janet = new Person("Janet", "Cook", 39);
+Person janet = new Person("Janet", "Gibson", 39);
 Person person = new Person("Frank", "Smith", 22);
 ----
 
