@@ -1,6 +1,3 @@
 
 image::foobar.gif[thanks, 640,480]
 
-
-
-

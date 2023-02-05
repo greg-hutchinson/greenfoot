@@ -14,7 +14,10 @@ public class Bomb extends Actor
      */
     public void act()
     {
+
+        setRotation(90);
         move(2);
+        setRotation(0);
         if (getY() >= getWorld().getHeight() - 1)
         {
             getWorld().removeObject(this);
