@@ -5,7 +5,6 @@ set xrange [0:10]
 set yrange [10:0]
 set grid
 
-f(x) = x
 #do for [i=1:int(STATS_blocks)] {
    plot 'datafile' index (0) title 'x=2, y=2' with circles linecolor rgb "#9ACD32" fill solid noborder 
    plot 'datafile' index (1) title 'x=3, y=3' with circles linecolor rgb "#9ACD32" fill solid noborder 
