@@ -1,8 +1,8 @@
 #Greenfoot project file
-editor.fx.0.height=728
-editor.fx.0.width=800
-editor.fx.0.x=-1533
-editor.fx.0.y=50
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 height=1095
 package.numDependencies=0
 package.numTargets=1
@@ -31,4 +31,4 @@ version=3.0.0
 width=1792
 world.lastInstantiated=SpaceInvader
 xPosition=0
-yPosition=0
+yPosition=25
