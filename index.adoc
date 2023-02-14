@@ -14,7 +14,8 @@ image::compass.png[compass, 200,140]
 East being at 0°, South at 90°, West at 180° and North at 270°. 
 
 Actors have an attribute called *rotation* that contains any value between 0 and 359 which decides which way they are "facing". When actors are initially created they are always facing east. This means that they have a rotation of 0°. This is important to know, because when we instruct and actor to *move*, they always move in the direction they are facing. Let's understand what this means with an example. Assume that we have a Rocket that currently is facing east, or in other words, has a rotation of 0°. The rocket would look like this on the screen.
-image::rocket.png[compass, 200,140]
+
+image::rocket.png[rocket, 200,140]
 
 If we were to "Tell" the rocket the following sequence of commands - please note that everything with a *//* is just a comment for you to understand what each line is doing.  
 [source, java]

@@ -59,9 +59,11 @@ That seems like a lot of the word Bullets. More on this in class.
 
 == Assignment of values to variables.
 The assignment operator is the **=** sign.  This is different than the comparator operator **==**. More on this one later.
-Whenever you see the **=** operator you have to process things in the following order. 
+Whenever you see the **=** operator you have to process things in the following order.
+
 * Calculate whatever is on the right hand side (RHS) of the **=** sign. This will result in a value or an object. 
 * Now take this value or object and place it in the variable (slot) that is named on the left hand side.
+
 This can now give us code like the following.
 
 [source, java]
